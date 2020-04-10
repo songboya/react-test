@@ -1,26 +1,43 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+// import This from './this/index';
+import Tab from './tabQie/index';
+import axios from 'axios';
+import Lunbo from './lunbo/index';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component{
+  constructor(props){
+    super(props);
+    // this.props.children = 'aa'
+   
+    console.log('这里是App中的props',props)
+  }
+
+  child = () => {
+    React.Children.map(i =>{
+      if (i === null) {
+        console.log('null')
+         return
+      } 
+      console.log( 1123)
+    })
+  }
+  componentDidMount(){
+    this.child();
+    axios.get('http://localhost:9000/users')
+    .then(res => {
+      console.log(res,'res');
+    })
+  }
+  render() {
+    return (
+     <div>ddd
+       {/* <This this = {'aa'}></This> */}
+       <Tab />
+       <Lunbo />
+       </div>
+    )
+  }
 }
 
-export default App;
